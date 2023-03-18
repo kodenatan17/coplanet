@@ -1,10 +1,13 @@
+import Navbar from "../../../components/organisms/navbar";
 import React from "react";
+import Footer from "../../../components/organisms/Footer";
 import TopupForm from "../../../components/organisms/TopupForm";
 import TopupItem from "../../../components/organisms/TopupItem";
 
 export default function Detail() {
   return (
     <>
+      <Navbar />
       <section className="detail pt-lg-60 pb-50">
         <div className="container-xxl container-fluid">
           <div className="detail-header pb-50">
@@ -27,6 +30,7 @@ export default function Detail() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }
