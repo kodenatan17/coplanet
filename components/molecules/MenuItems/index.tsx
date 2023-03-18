@@ -3,15 +3,15 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface MenuItemProps {
+export interface MenuItemProps {
   title: string;
   category: string;
   thumbnail:
-    | "Thumbnail-1"
-    | "Thumbnail-2"
-    | "Thumbnail-3"
-    | "Thumbnail-4"
-    | "Thumbnail-5";
+    | "/img/Thumbnail-1.png"
+    | "/img/Thumbnail-2.png"
+    | "/img/Thumbnail-3.png"
+    | "/img/Thumbnail-4.png"
+    | "/img/Thumbnail-5.png";
 }
 
 export default function MenuItems(props: MenuItemProps) {
@@ -23,7 +23,7 @@ export default function MenuItems(props: MenuItemProps) {
           <div className="blur-sharp">
             <Image
               className="thumbnail"
-              src={`/img/${thumbnail}.png`}
+              src={thumbnail}
               width={205}
               height={270}
               alt="thumbnail"

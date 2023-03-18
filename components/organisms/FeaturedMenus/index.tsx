@@ -16,27 +16,27 @@ export default function FeauturedMenus() {
           <MenuItems
             title="Chocolate Mousse"
             category="Heavy Cream"
-            thumbnail="Thumbnail-1"
+            thumbnail="/img/Thumbnail-1.png"
           />
           <MenuItems
             title="Chocolate Bombs Lava"
             category="Heavy Cream"
-            thumbnail="Thumbnail-2"
+            thumbnail="/img/Thumbnail-2.png"
           />
           <MenuItems
             title="Square Assorted"
             category="Light Cream"
-            thumbnail="Thumbnail-3"
+            thumbnail="/img/Thumbnail-3.png"
           />
           <MenuItems
             title="Choco Tiramisu"
             category="Heavy Cream"
-            thumbnail="Thumbnail-4"
+            thumbnail="/img/Thumbnail-4.png"
           />
           <MenuItems
             title="Chocobars Mints"
             category="Light Cream"
-            thumbnail="Thumbnail-5"
+            thumbnail="/img/Thumbnail-5.png"
           />
         </div>
       </div>
