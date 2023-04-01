@@ -18,10 +18,8 @@ export default function Menu(props: Partial<MenuProps>) {
 
   return (
     <li className="nav-item my-auto">
-      <Link href={href}>
-        <a className={classTitle} aria-current="page">
-          {title}
-        </a>
+      <Link href={href} className={classTitle} aria-current="page">
+        {title}
       </Link>
     </li>
   );

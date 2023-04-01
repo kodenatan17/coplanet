@@ -34,27 +34,32 @@ export default function Auth(props: Partial<AuthProps>) {
             aria-labelledby="dropdownMenuLink"
           >
             <li>
-              <Link href="/member">
-                <a className="dropdown-item text-lg color-palette-2">
-                  My Profile
-                </a>
+              <Link
+                className="dropdown-item text-lg color-palette-2"
+                href="/member"
+              >
+                My Profile
               </Link>
             </li>
             <li>
-              <Link href="">
-                <a className="dropdown-item text-lg color-palette-2">Wallet</a>
+              <Link className="dropdown-item text-lg color-palette-2" href="">
+                Wallet
               </Link>
             </li>
             <li>
-              <Link href="/member/edit-profile">
-                <a className="dropdown-item text-lg color-palette-2">
-                  Account Settings
-                </a>
+              <Link
+                href="/member/edit-profile"
+                className="dropdown-item text-lg color-palette-2"
+              >
+                Account Settings
               </Link>
             </li>
             <li>
-              <Link href="/sign-in">
-                <a className="dropdown-item text-lg color-palette-2">Log Out</a>
+              <Link
+                href="/sign-in"
+                className="dropdown-item text-lg color-palette-2"
+              >
+                Log Out
               </Link>
             </li>
           </ul>
@@ -64,13 +69,12 @@ export default function Auth(props: Partial<AuthProps>) {
   }
   return (
     <li className="nav-item my-auto">
-      <Link href="/sign-in">
-        <a
-          className="btn btn-sign-in d-flex justify-content-center ms-lg-2 rounded-pill"
-          role="button"
-        >
-          Sign In
-        </a>
+      <Link
+        href="/sign-in"
+        className="btn btn-sign-in d-flex justify-content-center ms-lg-2 rounded-pill"
+        role="button"
+      >
+        Sign In
       </Link>
     </li>
   );

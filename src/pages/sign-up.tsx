@@ -10,16 +10,14 @@ export default function SignUp() {
         <div className="container mx-auto">
           <form action="">
             <div className="pb-50">
-              <Link href="/">
-                <a className="navbar-brand">
-                  <Image
-                    src="/icon/logo.png"
-                    width={60}
-                    height={60}
-                    className="img-fluid"
-                    alt=""
-                  />
-                </a>
+              <Link href="/" className="navbar-brand">
+                <Image
+                  src="/icon/logo.png"
+                  width={60}
+                  height={60}
+                  className="img-fluid"
+                  alt=""
+                />
               </Link>
             </div>
             <SignupForm />
