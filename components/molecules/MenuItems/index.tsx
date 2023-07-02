@@ -6,12 +6,7 @@ import Link from "next/link";
 export interface MenuItemProps {
   title: string;
   category: string;
-  thumbnail:
-    | "/img/Thumbnail-1.png"
-    | "/img/Thumbnail-2.png"
-    | "/img/Thumbnail-3.png"
-    | "/img/Thumbnail-4.png"
-    | "/img/Thumbnail-5.png";
+  thumbnail: string;
 }
 
 export default function MenuItems(props: MenuItemProps) {

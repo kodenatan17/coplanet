@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { getFeaturedMenu } from "../../../services/player";
 import MenuItems from "../../molecules/MenuItems";
 
 export default function FeauturedMenus() {
+  const [menuList, setmenuList] = useState<any[]>([]);
+  const getFeaturedMenuList = useCallback(async () => {
+    const data = await getFeaturedMenu();
+    setmenuList(data);
+  }, [getFeaturedMenu]);
+
+  useEffect(() => {
+    getFeaturedMenuList();
+  }, []);
+
   return (
     <section className="featured-game pt-50 pb-50">
       <div className="container-fluid">
@@ -13,31 +24,16 @@ export default function FeauturedMenus() {
           className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4"
           data-aos="fade-up"
         >
-          <MenuItems
-            title="Chocolate Mousse"
-            category="Heavy Cream"
-            thumbnail="/img/Thumbnail-1.png"
-          />
-          <MenuItems
-            title="Chocolate Bombs Lava"
-            category="Heavy Cream"
-            thumbnail="/img/Thumbnail-2.png"
-          />
-          <MenuItems
-            title="Square Assorted"
-            category="Light Cream"
-            thumbnail="/img/Thumbnail-3.png"
-          />
-          <MenuItems
-            title="Choco Tiramisu"
-            category="Heavy Cream"
-            thumbnail="/img/Thumbnail-4.png"
-          />
-          <MenuItems
-            title="Chocobars Mints"
-            category="Light Cream"
-            thumbnail="/img/Thumbnail-5.png"
-          />
+          {menuList.map((items) => {
+            return (
+              <MenuItems
+                key={items._id}
+                title={items.name}
+                category={items.category.name}
+                thumbnail={`/img/Thumbnail-1.png`}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
