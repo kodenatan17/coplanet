@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { MenuItemTypes } from "../../../services/data-types";
 import { getFeaturedMenu } from "../../../services/player";
 import MenuItems from "../../molecules/MenuItems";
 
 export default function FeauturedMenus() {
-  const [menuList, setmenuList] = useState<any[]>([]);
+  const [menuList, setmenuList] = useState([]);
   const getFeaturedMenuList = useCallback(async () => {
     const data = await getFeaturedMenu();
     setmenuList(data);
@@ -13,6 +14,7 @@ export default function FeauturedMenus() {
     getFeaturedMenuList();
   }, []);
 
+  const API_IMG = process.env.NEXT_PUBLIC_IMG;
   return (
     <section className="featured-game pt-50 pb-50">
       <div className="container-fluid">
@@ -24,13 +26,14 @@ export default function FeauturedMenus() {
           className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4"
           data-aos="fade-up"
         >
-          {menuList.map((items) => {
+          {menuList.map((items: MenuItemTypes) => {
             return (
               <MenuItems
                 key={items._id}
                 title={items.name}
                 category={items.category.name}
-                thumbnail={`/img/Thumbnail-1.png`}
+                thumbnail={`${API_IMG}/${items.thumbnail}`}
+                id={items._id}
               />
             );
           })}
