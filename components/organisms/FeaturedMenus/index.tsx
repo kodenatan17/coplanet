@@ -33,6 +33,7 @@ export default function FeauturedMenus() {
                 title={items.name}
                 category={items.category.name}
                 thumbnail={`${API_IMG}/${items.thumbnail}`}
+                id={items._id}
               />
             );
           })}

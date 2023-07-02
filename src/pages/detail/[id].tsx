@@ -1,10 +1,20 @@
 import Navbar from "../../../components/organisms/navbar";
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../../../components/organisms/Footer";
 import TopupForm from "../../../components/organisms/TopupForm";
 import TopupItem from "../../../components/organisms/TopupItem";
+import { useRouter } from "next/router";
 
 export default function Detail() {
+  const { query, isReady } = useRouter();
+
+  useEffect(() => {
+    if (isReady) {
+      console.log("routes ready", query.id);
+    } else {
+      console.log("routes not ready");
+    }
+  }, [isReady]);
   return (
     <>
       <Navbar />
