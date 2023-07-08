@@ -2,6 +2,9 @@ import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { setSignUp } from "../../services/auth";
 import { getMenuCategory } from "../../services/player";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 export default function SignUpPhoto() {
   const [categories, setCategories] = useState([]);
@@ -12,6 +15,7 @@ export default function SignUpPhoto() {
     name: "",
     email: "",
   });
+  const router = useRouter();
 
   const getMenuCategoryAPI = useCallback(async () => {
     const data = await getMenuCategory();
@@ -42,8 +46,14 @@ export default function SignUpPhoto() {
     data.append("status", "Y");
     data.append("favorite", favorite);
 
-    const result = setSignUp(data);
-    console.log("result : ", result);
+    const result = await setSignUp(data);
+    if (result.error === 1) {
+      toast.error(result.message);
+    } else {
+      toast.success("Register Berhasil");
+      router.push("/sign-up-success");
+      localStorage.removeItem("user-form");
+    }
   };
   return (
     <>
@@ -76,7 +86,6 @@ export default function SignUpPhoto() {
                       name="avatar"
                       accept="image/png, image/jpeg"
                       onChange={(event) => {
-                        console.log(event.target.files);
                         const image = event.target.files[0];
                         setImagePreview(URL.createObjectURL(image));
                         return setImage(image);
@@ -136,6 +145,7 @@ export default function SignUpPhoto() {
             </div>
           </form>
         </div>
+        <ToastContainer />
       </section>
     </>
   );
