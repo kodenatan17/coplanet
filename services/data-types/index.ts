@@ -44,10 +44,19 @@ export interface UserTypes {
     username: string;
     email: string;
     name: string;
-    avatar: string
+    avatar: string;
 }
 
 export interface JWTPayloadTypes {
     player : UserTypes;
-    iat: number
+    iat: number;
+}
+
+export interface CheckoutTypes {
+    voucher: string;
+    nominal: string;
+    payment: string;
+    bank: string;
+    name: string;
+    accountUser: string;
 }
