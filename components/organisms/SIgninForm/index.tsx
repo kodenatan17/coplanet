@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setLogin } from "../../../services/auth";
 import { useRouter } from "next/router";
+import { debounce } from "lodash";
 import Cookies from "js-cookie";
 
 export default function SigninForm() {
@@ -52,7 +53,7 @@ export default function SigninForm() {
           aria-describedby="email"
           placeholder="Enter your email address"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={debounce((event) => setEmail(event.target.value))}
         />
       </div>
       <div className="pt-30">
@@ -65,7 +66,7 @@ export default function SigninForm() {
           aria-describedby="password"
           placeholder="Your password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={debounce((event) => setPassword(event.target.value))}
         />
       </div>
       <div className="button-group d-flex flex-column mx-auto pt-50">

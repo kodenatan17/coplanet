@@ -1,7 +1,7 @@
-import classNames from "classnames";
 import React, { useState } from "react";
 import cx from "classnames";
 import { useRouter } from "next/router";
+import { debounce } from "lodash";
 
 export default function SignupForm() {
   const [name, setName] = useState("");
@@ -35,7 +35,7 @@ export default function SignupForm() {
           aria-describedby="name"
           placeholder="Enter your name"
           value={name}
-          onChange={(event) => setName(event.target.value)}
+          onChange={debounce((event) => setName(event.target.value))}
         />
       </div>
       <div className="pt-30">
@@ -46,7 +46,7 @@ export default function SignupForm() {
           aria-describedby="email"
           placeholder="Enter your email address"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={debounce((event) => setEmail(event.target.value))}
         />
       </div>
       <div className="pt-30">
@@ -57,7 +57,7 @@ export default function SignupForm() {
           aria-describedby="password"
           placeholder="Your password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={debounce((event) => setPassword(event.target.value))}
         />
       </div>
       <div className="button-group d-flex flex-column mx-auto pt-50">
