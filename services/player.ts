@@ -1,4 +1,5 @@
 import axios from "axios";
+import callAPI from "../config/api";
 const API_URL = process.env.NEXT_PUBLIC_API;
 const API_VERSION = 'api/v1';
 
