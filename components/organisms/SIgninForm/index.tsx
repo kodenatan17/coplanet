@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setLogin } from "../../../services/auth";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 export default function SigninForm() {
   const [email, setEmail] = useState("");
@@ -24,6 +25,9 @@ export default function SigninForm() {
         toast.error(response.message);
       } else {
         toast.success("Login Berhasil");
+        const { token } = response.data.token;
+        const tokenBase64 = window.btoa(token);
+        Cookies.set("token", tokenBase64, { expires: 1 });
         router.push("/");
       }
     }
@@ -72,10 +76,11 @@ export default function SigninForm() {
         >
           Continue to Sign In
         </button>
-        <Link href="/sign-up">
-          <a className="btn btn-sign-up fw-medium text-lg color-palette-1 rounded-pill">
-            Sign Up
-          </a>
+        <Link
+          href="/sign-up"
+          className="btn btn-sign-up fw-medium text-lg color-palette-1 rounded-pill"
+        >
+          Sign Up
         </Link>
       </div>
       <ToastContainer />

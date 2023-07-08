@@ -10,7 +10,7 @@ export default function SignUpPhoto() {
   const [categories, setCategories] = useState([]);
   const [favorite, setFavorite] = useState("");
   const [image, setImage] = useState("");
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [localForm, setLocalForm] = useState({
     name: "",
     email: "",
@@ -27,14 +27,14 @@ export default function SignUpPhoto() {
   }, []);
   useEffect(() => {
     const getLocalForm = localStorage.getItem("user-form");
-    setLocalForm(JSON.parse(getLocalForm));
+    setLocalForm(JSON.parse(getLocalForm!));
   }, []);
 
   const onSubmit = async () => {
     console.log("favorite :", favorite);
     console.log("image :", image);
     const getLocalForm = await localStorage.getItem("user-form");
-    const form = JSON.parse(getLocalForm);
+    const form = JSON.parse(getLocalForm!);
     const data = new FormData();
 
     data.append("image", image);
@@ -47,7 +47,7 @@ export default function SignUpPhoto() {
     data.append("favorite", favorite);
 
     const result = await setSignUp(data);
-    if (result.error === 1) {
+    if (result.error) {
       toast.error(result.message);
     } else {
       toast.success("Register Berhasil");
@@ -86,9 +86,12 @@ export default function SignUpPhoto() {
                       name="avatar"
                       accept="image/png, image/jpeg"
                       onChange={(event) => {
-                        const image = event.target.files[0];
-                        setImagePreview(URL.createObjectURL(image));
-                        return setImage(image);
+                        const files = event.target.files;
+                        if (files && files.length > 0) {
+                          const image = files[0];
+                          setImagePreview(URL.createObjectURL(image));
+                          setImage(image);
+                        }
                       }}
                     />
                   </div>
