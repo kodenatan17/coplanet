@@ -10,8 +10,16 @@ export async function getFeaturedMenu() {
     return axiosResponse.data;
 }
 
-export async function getDetailVoucher(id: any) {
+export async function getDetailVoucher(id: string) {
     const URL = `players/${id}/detail`;
+
+    const response = await axios.get(`${API_URL}/${API_VERSION}/${URL}`);
+    const axiosResponse = response.data;
+    return axiosResponse.data;
+}
+
+export async function getMenuCategory() {
+    const URL = `players/category`;
 
     const response = await axios.get(`${API_URL}/${API_VERSION}/${URL}`);
     const axiosResponse = response.data;
