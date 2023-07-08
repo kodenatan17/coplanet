@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setLogin } from "../../../services/auth";
 import { useRouter } from "next/router";
+import { debounce } from "lodash";
 import Cookies from "js-cookie";
 
 export default function SigninForm() {
@@ -52,7 +53,7 @@ export default function SigninForm() {
           aria-describedby="email"
           placeholder="Enter your email address"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={debounce((event) => setEmail(event.target.value))}
         />
       </div>
       <div className="pt-30">

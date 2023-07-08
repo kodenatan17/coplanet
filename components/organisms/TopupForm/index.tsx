@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { debounce } from "lodash";
 import {
   BanksTypes,
   NominalsTypes,
@@ -15,10 +16,21 @@ interface TopupFormProps {
 export default function TopupForm(props: TopupFormProps) {
   const [verifyID, setVerifyID] = useState("");
   const { nominals, payments } = props;
+  const [bankAccountName, setBankAccountName] = useState("");
 
   const onNominalItemSelected = (data: NominalsTypes) => {
     localStorage.setItem("nominal-item", JSON.stringify(data));
   };
+
+  const onPaymentItemSelected = (payment: PaymentTypes, bank: BanksTypes) => {
+    const data = {
+      payment,
+      bank,
+    };
+    localStorage.setItem("payment-item", JSON.stringify(data));
+  };
+
+  const onSubmit = () => {};
   return (
     <form action="./checkout.html" method="POST">
       <div className="pt-md-50 pt-30">
@@ -38,7 +50,7 @@ export default function TopupForm(props: TopupFormProps) {
             aria-describedby="verifyID"
             placeholder="Enter your ID"
             value={verifyID}
-            onChange={(event) => setVerifyID(event.target.value)}
+            onChange={debounce((event) => setVerifyID(event.target.value))}
           />
         </div>
       </div>
@@ -55,7 +67,7 @@ export default function TopupForm(props: TopupFormProps) {
                 coinQuantity={e.coinQuantity}
                 coinName={e.coinName}
                 price={e.price}
-                onChange={() => onNominalItemSelected(e)}
+                onChange={debounce(() => onNominalItemSelected(e))}
               />
             );
           })}
@@ -74,6 +86,9 @@ export default function TopupForm(props: TopupFormProps) {
                   bankID={bank._id}
                   name={bank.bankName}
                   type={payment.type}
+                  onChange={debounce(() =>
+                    onPaymentItemSelected(payment, bank)
+                  )}
                 />
               ))
             )}
@@ -96,16 +111,18 @@ export default function TopupForm(props: TopupFormProps) {
           name="bankAccount"
           aria-describedby="bankAccount"
           placeholder="Enter your Bank Account Name"
+          value={bankAccountName}
+          onChange={debounce((event) => setBankAccountName(event.target.value))}
         />
       </div>
       <div className="d-sm-block d-flex flex-column w-100">
-        <a
-          href="/checkout"
-          type="submit"
+        <button
+          type="button"
           className="btn btn-submit rounded-pill fw-medium text-white border-0 text-lg"
+          onClick={onSubmit}
         >
           Continue
-        </a>
+        </button>
       </div>
     </form>
   );
