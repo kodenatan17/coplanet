@@ -66,7 +66,7 @@ export default function SigninForm() {
           aria-describedby="password"
           placeholder="Your password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={debounce((event) => setPassword(event.target.value))}
         />
       </div>
       <div className="button-group d-flex flex-column mx-auto pt-50">
