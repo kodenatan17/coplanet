@@ -6,6 +6,7 @@ export default async function callAPI({url, method, data}: AxiosRequestConfig & 
         method,
         data,
     }).catch(err => err.response);
+    console.log(response);
     if(response?.status > 300) {
         const res = {
             error: true,
