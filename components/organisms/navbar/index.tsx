@@ -20,7 +20,7 @@ export default function Navbar() {
               <Menu title="Rewards" href="/" />
               <Menu title="Discover" href="/" />
               <Menu title="Our Outlets" href="/" />
-              <Auth />
+              <Auth />z
             </ul>
           </div>
         </div>
