@@ -15,7 +15,7 @@ export default function CompleteCheckout() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0)">
+              <g clipPath="url(#clip0)">
                 <path
                   d="M263.96 271.587C264.986 271.07 265.5 270.554 266.525 270.037"
                   stroke="#FF78B7"
@@ -236,7 +236,7 @@ export default function CompleteCheckout() {
                   <stop
                     offset="0.00289017"
                     stop-color="#606673"
-                    stop-opacity="0"
+                    stopOpacity="0"
                   />
                   <stop offset="1" stop-color="#373C47" />
                 </linearGradient>

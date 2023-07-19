@@ -14,7 +14,7 @@ export default function Custom404() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0)">
+              <g clipPath="url(#clip0)">
                 <path
                   d="M6.92621 184.487C10.593 184.487 13.8524 181.579 13.8524 177.424C13.8524 173.684 11.0004 170.36 6.92621 170.36C3.25939 170.36 0 173.268 0 177.424C0 181.163 2.85197 184.487 6.92621 184.487Z"
                   fill="url(#paint0_linear)"
@@ -270,7 +270,7 @@ export default function Custom404() {
                   <stop
                     offset="0.00289017"
                     stop-color="#606673"
-                    stop-opacity="0"
+                    stopOpacity="0"
                   />
                   <stop offset="1" stop-color="#373C47" />
                 </linearGradient>
@@ -285,7 +285,7 @@ export default function Custom404() {
                   <stop
                     offset="0.00289017"
                     stop-color="#606673"
-                    stop-opacity="0"
+                    stopOpacity="0"
                   />
                   <stop offset="1" stop-color="#373C47" />
                 </linearGradient>
@@ -311,7 +311,7 @@ export default function Custom404() {
                   <stop
                     offset="0.00289017"
                     stop-color="#606673"
-                    stop-opacity="0"
+                    stopOpacity="0"
                   />
                   <stop offset="1" stop-color="#373C47" />
                 </linearGradient>
@@ -326,7 +326,7 @@ export default function Custom404() {
                   <stop
                     offset="0.00289017"
                     stop-color="#606673"
-                    stop-opacity="0"
+                    stopOpacity="0"
                   />
                   <stop offset="1" stop-color="#373C47" />
                 </linearGradient>
@@ -341,7 +341,7 @@ export default function Custom404() {
                   <stop
                     offset="0.00289017"
                     stop-color="#3F5073"
-                    stop-opacity="0"
+                    stopOpacity="0"
                   />
                   <stop offset="1" stop-color="#283247" />
                 </linearGradient>

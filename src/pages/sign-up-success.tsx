@@ -15,7 +15,7 @@ export default function SignUpSuccess() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0)">
+              <g clipPath="url(#clip0)">
                 <path
                   d="M18.4405 59.8199C21.1258 58.9441 22.5952 56.0494 21.7224 53.3546C20.8496 50.6599 17.9651 49.1854 15.2797 50.0612C12.5944 50.937 11.1251 53.8317 11.9978 56.5265C12.8707 59.2212 15.7551 60.6959 18.4405 59.8199Z"
                   fill="#EAEEF9"
@@ -154,7 +154,7 @@ export default function SignUpSuccess() {
                   gradientUnits="userSpaceOnUse"
                 >
                   <stop stop-color="#4F6AFF" />
-                  <stop offset="1" stop-color="#657EFF" stop-opacity="0" />
+                  <stop offset="1" stop-color="#657EFF" stopOpacity="0" />
                 </linearGradient>
                 <linearGradient
                   id="paint6_linear"
