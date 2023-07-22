@@ -51,7 +51,7 @@ interface GetServerSideProps {
   };
 }
 
-export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+export async function getServerSideProps({ req }: GetServerSideProps) {
   const { token } = req.cookies;
   if (!token) {
     return {
