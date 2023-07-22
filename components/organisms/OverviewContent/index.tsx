@@ -3,6 +3,7 @@ import router from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getMemberOverview } from "../../../services/player";
+import MenuItem from "../Sidebar/MenuItem";
 import Category from "./Category";
 import TableRow from "./TableRow";
 
@@ -18,6 +19,7 @@ export default function OverviewContent() {
       setData(response.data.data);
     }
   }, []);
+  const IMG = process.env.NEXT_PUBLIC_IMG;
   return (
     <main className="main-wrapper">
       <div className="ps-lg-0">
@@ -55,38 +57,18 @@ export default function OverviewContent() {
                 </tr>
               </thead>
               <tbody>
-                <TableRow
-                  title="Mobile Legend"
-                  category="Dekstop"
-                  item={200}
-                  price={200000}
-                  status="Failed"
-                  image="overview-1"
-                />
-                <TableRow
-                  title="Call of Duty:Modern"
-                  category="Dekstop"
-                  item={200}
-                  price={200000}
-                  status="Pending"
-                  image="overview-2"
-                />
-                <TableRow
-                  title="Clash of Clans"
-                  category="Dekstop"
-                  item={200}
-                  price={200000}
-                  status="Success"
-                  image="overview-3"
-                />
-                <TableRow
-                  title="The Royal Game"
-                  category="Dekstop"
-                  item={200}
-                  price={200000}
-                  status="Pending"
-                  image="overview-4"
-                />
+                {data.map((e) => {
+                  return (
+                    <TableRow
+                      title={e.historyVoucherTopup.gameName}
+                      category={e.historyVoucherTopup.category}
+                      item={`${e.historyVoucherTopup.coinQuantity} ${e.historyVoucherTopup.coinName}`}
+                      price={e.value}
+                      status={e.status}
+                      image={`${IMG}/${e.historyVoucherTopup.thumbnail}`}
+                    />
+                  );
+                })}
               </tbody>
             </table>
           </div>
