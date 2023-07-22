@@ -38,3 +38,4 @@ export async function setCheckout(data : CheckoutTypes) {
         token: true 
     })
 }
+
