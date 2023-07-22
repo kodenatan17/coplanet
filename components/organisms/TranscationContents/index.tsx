@@ -100,6 +100,7 @@ export default function TransactionContents() {
                       price={e.value}
                       status={e.status}
                       image={`${IMG}/${e.historyVoucherTopup.thumbnail}`}
+                      id={e._id}
                     />
                   );
                 })}
