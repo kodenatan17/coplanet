@@ -1,25 +1,33 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import { toast } from "react-toastify";
+import { HistoryTransactionTypes } from "../../../services/data-types";
 import { getMemberTransaction } from "../../../services/member";
 import ButtonTab from "./ButtonTab";
 import TableRow from "./TableRow";
 
 export default function TransactionContents() {
   const [total, setTotal] = useState(0);
-  const getMemberTransactionAPI = useCallback(async () => {
-    const response = await getMemberTransaction();
+  const [transactions, setTransactions] = useState([]);
+  const [tab, setTab] = useState("all");
+  const getMemberTransactionAPI = useCallback(async (value: string) => {
+    const response = await getMemberTransaction(value);
     if (response.error) {
       toast.error(response.message);
     } else {
       setTotal(response.data.total);
-      setCount(response.data.count);
-      setData(response.data.data);
+      setTransactions(response.data.data);
     }
   }, []);
   useEffect(() => {
-    getMemberTransactionAPI();
+    getMemberTransactionAPI("all");
   }, []);
+
+  const onTabClick = (value: string) => {
+    setTab(value);
+    getMemberTransactionAPI(value);
+  };
+  const IMG = process.env.NEXT_PUBLIC_IMG;
   return (
     <main className="main-wrapper">
       <div className="ps-lg-0">
@@ -41,10 +49,26 @@ export default function TransactionContents() {
         <div className="row mt-30 mb-20">
           <div className="col-lg-12 col-12 main-content">
             <div id="list_status_title">
-              <ButtonTab title="All Trx" active />
-              <ButtonTab title="Success" active={false} />
-              <ButtonTab title="Pending" active={false} />
-              <ButtonTab title="Failed" active={false} />
+              <ButtonTab
+                onClick={() => onTabClick("all")}
+                title="All Trx"
+                active={tab === "all"}
+              />
+              <ButtonTab
+                onClick={() => onTabClick("success")}
+                title="Success"
+                active={tab === "success"}
+              />
+              <ButtonTab
+                onClick={() => onTabClick("pending")}
+                title="Pending"
+                active={tab === "pending"}
+              />
+              <ButtonTab
+                onClick={() => onTabClick("failed")}
+                title="Failed"
+                active={tab === "failed"}
+              />
             </div>
           </div>
         </div>
@@ -66,38 +90,20 @@ export default function TransactionContents() {
                 </tr>
               </thead>
               <tbody id="list_status_item">
-                <TableRow
-                  title="Mobile Legends"
-                  category="mobile"
-                  item={200}
-                  price={700000}
-                  status="Pending"
-                  image="overview-1"
-                />
-                <TableRow
-                  title="Call of Duty:Modern"
-                  category="Desktop"
-                  item={550}
-                  price={740000}
-                  status="Success"
-                  image="overview-2"
-                />
-                <TableRow
-                  title="Clash of Clans"
-                  category="mobile"
-                  item={200}
-                  price={750000}
-                  status="Failed"
-                  image="overview-3"
-                />
-                <TableRow
-                  title="Mobile Legends"
-                  category="mobile"
-                  item={200}
-                  price={700000}
-                  status="Pending"
-                  image="overview-4"
-                />
+                {transactions.map((e: HistoryTransactionTypes) => {
+                  return (
+                    <TableRow
+                      key={e._id}
+                      title={e.historyVoucherTopup.gameName}
+                      category={e.historyVoucherTopup.category}
+                      item={`${e.historyVoucherTopup.coinQuantity} ${e.historyVoucherTopup.coinName}`}
+                      price={e.value}
+                      status={e.status}
+                      image={`${IMG}/${e.historyVoucherTopup.thumbnail}`}
+                      id={e._id}
+                    />
+                  );
+                })}
               </tbody>
             </table>
           </div>
