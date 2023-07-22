@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import { toast } from "react-toastify";
+import { HistoryTransactionTypes } from "../../../services/data-types";
 import { getMemberTransaction } from "../../../services/member";
 import ButtonTab from "./ButtonTab";
 import TableRow from "./TableRow";
@@ -8,8 +9,9 @@ import TableRow from "./TableRow";
 export default function TransactionContents() {
   const [total, setTotal] = useState(0);
   const [transactions, setTransactions] = useState([]);
-  const getMemberTransactionAPI = useCallback(async () => {
-    const response = await getMemberTransaction();
+  const [tab, setTab] = useState("all");
+  const getMemberTransactionAPI = useCallback(async (value: string) => {
+    const response = await getMemberTransaction(value);
     if (response.error) {
       toast.error(response.message);
     } else {
@@ -18,8 +20,13 @@ export default function TransactionContents() {
     }
   }, []);
   useEffect(() => {
-    getMemberTransactionAPI();
+    getMemberTransactionAPI("all");
   }, []);
+
+  const onTabClick = (value: string) => {
+    setTab(value);
+    getMemberTransactionAPI(value);
+  };
   const IMG = process.env.NEXT_PUBLIC_IMG;
   return (
     <main className="main-wrapper">
@@ -42,10 +49,26 @@ export default function TransactionContents() {
         <div className="row mt-30 mb-20">
           <div className="col-lg-12 col-12 main-content">
             <div id="list_status_title">
-              <ButtonTab title="All Trx" active />
-              <ButtonTab title="Success" active={false} />
-              <ButtonTab title="Pending" active={false} />
-              <ButtonTab title="Failed" active={false} />
+              <ButtonTab
+                onClick={() => onTabClick("all")}
+                title="All Trx"
+                active={tab === "all"}
+              />
+              <ButtonTab
+                onClick={() => onTabClick("success")}
+                title="Success"
+                active={tab === "success"}
+              />
+              <ButtonTab
+                onClick={() => onTabClick("pending")}
+                title="Pending"
+                active={tab === "pending"}
+              />
+              <ButtonTab
+                onClick={() => onTabClick("failed")}
+                title="Failed"
+                active={tab === "failed"}
+              />
             </div>
           </div>
         </div>
@@ -67,7 +90,7 @@ export default function TransactionContents() {
                 </tr>
               </thead>
               <tbody id="list_status_item">
-                {transactions.map((e) => {
+                {transactions.map((e: HistoryTransactionTypes) => {
                   return (
                     <TableRow
                       key={e._id}
