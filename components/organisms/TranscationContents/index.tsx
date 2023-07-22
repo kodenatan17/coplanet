@@ -7,19 +7,20 @@ import TableRow from "./TableRow";
 
 export default function TransactionContents() {
   const [total, setTotal] = useState(0);
+  const [transactions, setTransactions] = useState([]);
   const getMemberTransactionAPI = useCallback(async () => {
     const response = await getMemberTransaction();
     if (response.error) {
       toast.error(response.message);
     } else {
       setTotal(response.data.total);
-      setCount(response.data.count);
-      setData(response.data.data);
+      setTransactions(response.data.data);
     }
   }, []);
   useEffect(() => {
     getMemberTransactionAPI();
   }, []);
+  const IMG = process.env.NEXT_PUBLIC_IMG;
   return (
     <main className="main-wrapper">
       <div className="ps-lg-0">
@@ -66,38 +67,19 @@ export default function TransactionContents() {
                 </tr>
               </thead>
               <tbody id="list_status_item">
-                <TableRow
-                  title="Mobile Legends"
-                  category="mobile"
-                  item={200}
-                  price={700000}
-                  status="Pending"
-                  image="overview-1"
-                />
-                <TableRow
-                  title="Call of Duty:Modern"
-                  category="Desktop"
-                  item={550}
-                  price={740000}
-                  status="Success"
-                  image="overview-2"
-                />
-                <TableRow
-                  title="Clash of Clans"
-                  category="mobile"
-                  item={200}
-                  price={750000}
-                  status="Failed"
-                  image="overview-3"
-                />
-                <TableRow
-                  title="Mobile Legends"
-                  category="mobile"
-                  item={200}
-                  price={700000}
-                  status="Pending"
-                  image="overview-4"
-                />
+                {transactions.map((e) => {
+                  return (
+                    <TableRow
+                      key={e._id}
+                      title={e.historyVoucherTopup.gameName}
+                      category={e.historyVoucherTopup.category}
+                      item={`${e.historyVoucherTopup.coinQuantity} ${e.historyVoucherTopup.coinName}`}
+                      price={e.value}
+                      status={e.status}
+                      image={`${IMG}/${e.historyVoucherTopup.thumbnail}`}
+                    />
+                  );
+                })}
               </tbody>
             </table>
           </div>
