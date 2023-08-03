@@ -31,7 +31,7 @@ export default function FeauturedMenus() {
               <MenuItems
                 key={items._id}
                 title={items.name}
-                category={items.category.name}
+                category={items.category ? items.category.name : "Unknown"}
                 thumbnail={`${API_IMG}/${items.thumbnail}`}
                 id={items._id}
               />

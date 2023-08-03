@@ -30,14 +30,13 @@ export default function SignUpPhoto() {
   }, []);
 
   const onSubmit = async () => {
-    console.log("favorite :", favorite);
-    console.log("image :", image);
     const getLocalForm = await localStorage.getItem("user-form");
     const form = JSON.parse(getLocalForm!);
     const data = new FormData();
 
     data.append("image", image);
     data.append("email", form.email);
+    data.append("name", form.name);
     data.append("password", form.password);
     data.append("username", form.name);
     data.append("phoneNumber", "08123456789");
@@ -89,7 +88,7 @@ export default function SignUpPhoto() {
                         if (files && files.length > 0) {
                           const image = files[0];
                           setImagePreview(URL.createObjectURL(image));
-                          setImage(image);
+                          return setImage(image);
                         }
                       }}
                     />
