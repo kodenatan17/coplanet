@@ -13,14 +13,20 @@ export default function Auth() {
   const router = useRouter();
   useEffect(() => {
     const token = Cookies.get("token");
+    console.log("token", token);
     if (token) {
-      const jwtToken = window.atob(token ?? "");
-      const payload: JWTPayloadTypes = jwtDecode(jwtToken);
-      const userPayload: UserTypes = payload.player;
-      const IMG = process.env.NEXT_PUBLIC_IMG;
-      userPayload.avatar = `${IMG}/${userPayload.avatar}`;
-      setIsLogin(true);
-      setUser(user);
+      try {
+        const jwtToken = window.atob(token ?? "");
+        console.log("jwtToken", jwtToken);
+        const payload: JWTPayloadTypes = jwtDecode(jwtToken);
+        const userPayload: UserTypes = payload.player;
+        const IMG = process.env.NEXT_PUBLIC_IMG;
+        userPayload.avatar = `${IMG}/${userPayload.avatar}`;
+        setIsLogin(true);
+        setUser(user);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, []);
 
