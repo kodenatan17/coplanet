@@ -17,13 +17,15 @@ export default function Auth() {
     if (token) {
       try {
         const jwtToken = window.atob(token ?? "");
+        console.log("jwt ORIGINAL", token);
         console.log("jwtToken", jwtToken);
-        const payload: JWTPayloadTypes = jwtDecode(jwtToken);
-        const userPayload: UserTypes = payload.player;
+        const userPayload: UserTypes = jwtDecode(jwtToken);
+        console.log("userPayload", userPayload);
+
         const IMG = process.env.NEXT_PUBLIC_IMG;
         userPayload.avatar = `${IMG}/${userPayload.avatar}`;
         setIsLogin(true);
-        setUser(user);
+        setUser(userPayload);
       } catch (error) {
         console.log(error);
       }

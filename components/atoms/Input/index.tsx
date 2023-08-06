@@ -2,9 +2,12 @@ import React from "react";
 
 export interface InputProps {
   label: string;
+  disabled?: boolean | null;
+  value?: string | null;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void | null;
 }
 export default function Input(props: InputProps) {
-  const { label, ...nativeProps } = props;
+  const { label, disabled, onChange, value, ...nativeProps } = props;
   return (
     <>
       <label
@@ -20,6 +23,9 @@ export default function Input(props: InputProps) {
         name="name"
         aria-describedby="name"
         placeholder="Enter your name"
+        disabled={disabled || false}
+        value={value || ""}
+        onChange={onChange}
         {...nativeProps}
       />
     </>

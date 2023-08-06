@@ -35,8 +35,7 @@ export async function getServerSideProps({ req }: GetServerSideProps) {
   }
 
   const jwtToken = Buffer.from(token, "base64").toString("ascii");
-  const payload: JWTPayloadTypes = jwtDecode(jwtToken);
-  const userPayload: UserTypes = payload.player;
+  const userPayload: UserTypes = jwtDecode(jwtToken);
   const IMG = process.env.NEXT_PUBLIC_IMG;
   userPayload.avatar = `${IMG}/${userPayload.avatar}`;
 
