@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
-import { JWTPayloadTypes, UserTypes } from "../../../services/data-types";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { UserTypes } from "../../../services/data-types";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(false);
@@ -13,14 +13,10 @@ export default function Auth() {
   const router = useRouter();
   useEffect(() => {
     const token = Cookies.get("token");
-    console.log("token", token);
     if (token) {
       try {
         const jwtToken = window.atob(token ?? "");
-        console.log("jwt ORIGINAL", token);
-        console.log("jwtToken", jwtToken);
         const userPayload: UserTypes = jwtDecode(jwtToken);
-        console.log("userPayload", userPayload);
 
         const IMG = process.env.NEXT_PUBLIC_IMG;
         userPayload.avatar = `${IMG}/${userPayload.avatar}`;

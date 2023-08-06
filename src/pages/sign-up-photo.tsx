@@ -4,6 +4,7 @@ import { setSignUp } from "../../services/auth";
 import { getMenuCategory } from "../../services/player";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { CategoryTypes } from "../../services/data-types";
 
 export default function SignUpPhoto() {
   const [categories, setCategories] = useState([]);
@@ -115,7 +116,7 @@ export default function SignUpPhoto() {
                     value={favorite}
                     onChange={(event) => setFavorite(event.target.value)}
                   >
-                    {categories.map((e) => {
+                    {categories.map((e: CategoryTypes) => {
                       return (
                         <option key={e._id} value={e._id}>
                           {e.name}
