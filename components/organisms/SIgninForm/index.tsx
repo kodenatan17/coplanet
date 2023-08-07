@@ -25,7 +25,7 @@ export default function SigninForm() {
         toast.error(response.message);
       } else {
         toast.success("Login Berhasil");
-        const { token } = response.data.token;
+        const { token } = response.data;
         const tokenBase64 = window.btoa(token);
         Cookies.set("token", tokenBase64, { expires: 1 });
         router.push("/");
