@@ -13,8 +13,7 @@ export default function Profile() {
     const token = Cookies.get("token");
     if (token) {
       const jwtToken = window.atob(token ?? "");
-      const payload: JWTPayloadTypes = jwtDecode(jwtToken);
-      const userPayload: UserTypes = payload.player;
+      const userPayload: UserTypes = jwtDecode(jwtToken);
       setUser(userPayload);
     }
   }, []);

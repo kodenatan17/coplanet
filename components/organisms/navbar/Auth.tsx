@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
-import { JWTPayloadTypes, UserTypes } from "../../../services/data-types";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { UserTypes } from "../../../services/data-types";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(false);
@@ -14,13 +14,17 @@ export default function Auth() {
   useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
-      const jwtToken = window.atob(token ?? "");
-      const payload: JWTPayloadTypes = jwtDecode(jwtToken);
-      const userPayload: UserTypes = payload.player;
-      const IMG = process.env.NEXT_PUBLIC_IMG;
-      userPayload.avatar = `${IMG}/${userPayload.avatar}`;
-      setIsLogin(true);
-      setUser(user);
+      try {
+        const jwtToken = window.atob(token ?? "");
+        const userPayload: UserTypes = jwtDecode(jwtToken);
+
+        const IMG = process.env.NEXT_PUBLIC_IMG;
+        userPayload.avatar = `${IMG}/${userPayload.avatar}`;
+        setIsLogin(true);
+        setUser(userPayload);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, []);
 
