@@ -1,14 +1,14 @@
-import Navbar from "../../../components/organisms/navbar";
-import React, { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import Footer from "../../../components/organisms/Footer";
+import Navbar from "../../../components/organisms/navbar";
 import TopupForm from "../../../components/organisms/TopupForm";
 import TopupItem from "../../../components/organisms/TopupItem";
-import { getDetailVoucher, getFeaturedMenu } from "../../../services/player";
 import {
   MenuItemTypes,
   NominalsTypes,
   PaymentTypes,
 } from "../../../services/data-types";
+import { getDetailVoucher, getFeaturedMenu } from "../../../services/player";
 
 interface DetailProps {
   dataItem: MenuItemTypes;

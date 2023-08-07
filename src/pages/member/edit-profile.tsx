@@ -8,14 +8,21 @@ import Sidebar from "../../../components/organisms/Sidebar";
 import { UserTypes } from "../../../services/data-types";
 import { updateProfile } from "../../../services/member";
 
+interface UserStateTypes {
+  id: string;
+  name: string;
+  email: string;
+  avatar: any;
+}
+
 export default function EditProfile() {
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<UserStateTypes>({
     id: "",
     name: "",
     email: "",
     avatar: "",
   });
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState("/");
   const router = useRouter();
 
   useEffect(() => {
@@ -49,9 +56,9 @@ export default function EditProfile() {
               <div className="photo d-flex">
                 <div className="image-upload">
                   <label htmlFor="avatar">
-                    {imagePreview ? (
+                    {imagePreview === "/" ? (
                       <img
-                        src={imagePreview}
+                        src={user.avatar}
                         alt="icon upload"
                         width={90}
                         height={90}
@@ -59,7 +66,7 @@ export default function EditProfile() {
                       />
                     ) : (
                       <img
-                        src={user.avatar}
+                        src={imagePreview}
                         alt="icon upload"
                         width={90}
                         height={90}

@@ -9,7 +9,7 @@ import { CategoryTypes } from "../../services/data-types";
 export default function SignUpPhoto() {
   const [categories, setCategories] = useState([]);
   const [favorite, setFavorite] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<any>("");
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [localForm, setLocalForm] = useState({
     name: "",
