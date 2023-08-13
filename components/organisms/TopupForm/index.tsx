@@ -74,7 +74,7 @@ export default function TopupForm(props: TopupFormProps) {
             aria-describedby="verifyID"
             placeholder="Enter your ID"
             value={verifyID}
-            onChange={debounce((event) => setVerifyID(event.target.value))}
+            onChange={(event) => setVerifyID(event.target.value)}
           />
         </div>
       </div>
@@ -136,7 +136,7 @@ export default function TopupForm(props: TopupFormProps) {
           aria-describedby="bankAccount"
           placeholder="Enter your Bank Account Name"
           value={bankAccountName}
-          onChange={debounce((event) => setBankAccountName(event.target.value))}
+          onChange={(event) => setBankAccountName(event.target.value)}
         />
       </div>
       <div className="d-sm-block d-flex flex-column w-100">

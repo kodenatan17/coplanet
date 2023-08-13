@@ -10,8 +10,10 @@ export default function CheckoutItems() {
   });
   useEffect(() => {
     const dataFromLocal = localStorage.getItem("data-item");
-    const dataItemLocal = JSON.parse(dataFromLocal ?? "");
-    setDataItem(dataItemLocal);
+    if (dataFromLocal) {
+      const dataItemLocal = JSON.parse(dataFromLocal);
+      setDataItem(dataItemLocal);
+    }
   }, []);
 
   const IMG = process.env.NEXT_PUBLIC_IMG;

@@ -16,10 +16,13 @@ export default function Auth() {
     if (token) {
       try {
         const jwtToken = window.atob(token ?? "");
+        //catatan: mengubah dari jwt code ke base64
         const userPayload: UserTypes = jwtDecode(jwtToken);
+        // catatan: jwtDecode itu berfungsi untuk memgubah base64 ke jwtCode
 
         const IMG = process.env.NEXT_PUBLIC_IMG;
         userPayload.avatar = `${IMG}/${userPayload.avatar}`;
+        // catatan:ini untuk mengambil data yang disimpan di dalam cookies
         setIsLogin(true);
         setUser(userPayload);
       } catch (error) {
