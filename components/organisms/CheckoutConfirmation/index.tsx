@@ -5,13 +5,15 @@ import { setCheckout } from "../../../services/player";
 
 export default function CheckoutConfirmation() {
   const [checkbox, setCheckbox] = useState(false);
+  const router = useRouter();
   const onSubmit = async () => {
     const dataItemLocal = localStorage.getItem("data-item");
     const dataTopupLocal = localStorage.getItem("data-topup");
 
     const dataItem = JSON.parse(dataItemLocal ?? "");
     const dataTopup = JSON.parse(dataTopupLocal ?? "");
-    const router = useRouter();
+
+    console.log("dataTopup", dataTopup);
     if (!checkbox) {
       toast.error("Pastikan anda telah melakukan pembayaran");
     }
@@ -20,9 +22,10 @@ export default function CheckoutConfirmation() {
       nominal: dataTopup.nominalItem._id,
       payment: dataTopup.paymentItem.payment._id,
       bank: dataTopup.paymentItem.bank._id,
-      name: dataTopup.bankAccoutName,
+      name: dataTopup.bankAccountName,
       accountUser: dataTopup.verifyID,
     };
+    console.log("data : ", data);
     const response = await setCheckout(data);
     if (response.error) {
       toast.error(response.message);

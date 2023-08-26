@@ -67,13 +67,16 @@ export default function CheckoutDetails() {
           </span>
         </p>
         <p className="text-lg color-palette-1 mb-20">
-          Tax (10%) <span className="purchase-details"><NumericFormat
-            value={tax}
-            prefix="Rp. "
-            displayType="text"
-            thousandSeparator="."
-            decimalSeparator=","
-          /></span>
+          Tax (10%){" "}
+          <span className="purchase-details">
+            <NumericFormat
+              value={tax}
+              prefix="Rp. "
+              displayType="text"
+              thousandSeparator="."
+              decimalSeparator=","
+            />
+          </span>
         </p>
         <p className="text-lg color-palette-1 mb-20">
           Total{" "}

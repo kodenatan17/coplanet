@@ -29,7 +29,7 @@ export async function getMenuCategory() {
 }
 
 export async function setCheckout(data : CheckoutTypes) {
-    const url = `${API_URL}/${API_VERSION}/players/checkout`;
+    const url = `${API_URL}/${API_VERSION}/players/check-out`;
     
     return callAPI({
         url,
